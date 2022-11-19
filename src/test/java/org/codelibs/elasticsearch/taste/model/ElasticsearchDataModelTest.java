@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.file.Files;
 import java.util.Date;
 
 import org.codelibs.elasticsearch.runner.ElasticsearchClusterRunner;
@@ -280,7 +281,7 @@ public class ElasticsearchDataModelTest {
 
     private FileDataModel getFileDataModel(final String[] lines)
             throws IOException {
-        final File f = File.createTempFile("taste", ".csv");
+        final File f = Files.createTempFile("taste", ".csv").toFile();
         f.deleteOnExit();
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(f),
                 Charsets.UTF_8)) {
